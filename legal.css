@@ -1,0 +1,327 @@
+/* ============================================================
+   legal.css — Luko 法律文件頁面共用樣式
+   鏡像 app/lib/features/auth/presentation/pages/legal_scaffold.dart
+   色彩系統完全對應 Flutter LegalScaffold design tokens
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --bg-base:    #0F1E15;
+  --bg-header:  #0C1912;
+  --bg-card:    #162E24;
+  --gold:       #C9A96E;
+  --title:      #F0FDF4;
+  --body:       rgba(232, 245, 235, 0.60);
+  --muted:      rgba(232, 245, 235, 0.30);
+  --caption:    rgba(255, 255, 255, 0.38);
+  --page-px:    24px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-base);
+  color: var(--body);
+  font-family: 'DM Sans', 'Noto Sans TC', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════════════════
+   吸頂品牌列 (Sticky Header)
+   ════════════════════════════════════════════ */
+
+.luko-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-header);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px var(--page-px) 11px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.33);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 4px 8px 4px 4px;
+  border-radius: 4px;
+  transition: color 0.18s ease;
+  user-select: none;
+  line-height: 1;
+}
+.back-btn:hover { color: rgba(255, 255, 255, 0.60); }
+
+.logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: rgba(240, 253, 244, 0.70);
+  line-height: 1;
+  text-decoration: none;
+}
+
+/* ── 捲動進度條 ── */
+.progress-track {
+  height: 1.5px;
+  background: rgba(201, 169, 110, 0.07);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, rgba(201, 169, 110, 0.45), #C9A96E);
+  transition: width 0.08s linear;
+  will-change: width;
+}
+
+/* ════════════════════════════════════════════
+   主要內容容器
+   ════════════════════════════════════════════ */
+
+.legal-main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--page-px) 80px;
+}
+
+/* ════════════════════════════════════════════
+   Hero 區塊（文件標題、副標、版本 badge）
+   ════════════════════════════════════════════ */
+
+.hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(38px, 9vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  line-height: 1.08;
+  color: var(--title);
+  margin-top: 44px;
+}
+
+/* 金線（從左展開，鏡像 Flutter _ExpandingLine） */
+.hero-line {
+  width: 48px;
+  height: 1px;
+  margin-top: 20px;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold) 65%, transparent 100%);
+}
+
+.hero-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 4.5px;
+  color: var(--caption);
+  line-height: 1;
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+.version-badge {
+  display: inline-block;
+  background: var(--bg-card);
+  border: 0.8px solid rgba(201, 169, 110, 0.18);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: rgba(201, 169, 110, 0.60);
+  margin-top: 22px;
+}
+
+/* 分隔線（漸層，鏡像 Flutter hero divider） */
+.hero-divider {
+  height: 0.5px;
+  margin-top: 44px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(201, 169, 110, 0.28) 20%,
+    rgba(201, 169, 110, 0.28) 80%,
+    transparent 100%
+  );
+}
+
+/* ════════════════════════════════════════════
+   章節標題（LegalSection）
+   大型裝飾數字 + 短金線 + DM Sans 金色標題
+   ════════════════════════════════════════════ */
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding-top: 48px;
+  padding-bottom: 14px;
+}
+
+.section-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 62px;
+  font-weight: 300;
+  letter-spacing: -2px;
+  color: rgba(201, 169, 110, 0.09);
+  line-height: 0.95;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.section-title-group {
+  flex: 1;
+  padding-bottom: 7px;
+}
+
+.section-title-line {
+  width: 18px;
+  height: 0.8px;
+  background: rgba(201, 169, 110, 0.45);
+  margin-bottom: 7px;
+}
+
+.section-title-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  color: var(--gold);
+  line-height: 1.35;
+}
+
+/* ════════════════════════════════════════════
+   條文段落（LegalClause）
+   ════════════════════════════════════════════ */
+
+.clause {
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05px;
+  line-height: 1.90;
+  color: var(--body);
+  margin-bottom: 12px;
+}
+
+.clause.bold {
+  font-weight: 500;
+  color: rgba(240, 253, 244, 0.88);
+}
+
+/* ════════════════════════════════════════════
+   圓點列舉（LegalBullet）
+   ════════════════════════════════════════════ */
+
+.bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 9px;
+  padding-left: 2px;
+}
+
+.bullet-dot {
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.42);
+  flex-shrink: 0;
+  margin-top: 11px;
+}
+
+.bullet-text {
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  font-size: 13.5px;
+  font-weight: 400;
+  letter-spacing: 0.05px;
+  line-height: 1.90;
+  color: var(--body);
+  flex: 1;
+}
+
+/* ════════════════════════════════════════════
+   重要提示框（LegalNotice）
+   左側金色邊線
+   ════════════════════════════════════════════ */
+
+.notice {
+  background: var(--bg-card);
+  border-radius: 7px;
+  border-left: 2px solid rgba(201, 169, 110, 0.55);
+  padding: 13px 14px 14px;
+  margin: 4px 0 16px;
+  font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.05px;
+  line-height: 1.80;
+  color: rgba(201, 169, 110, 0.72);
+}
+
+/* ════════════════════════════════════════════
+   小節子標題（LegalSubheading）
+   ════════════════════════════════════════════ */
+
+.subheading {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
+  color: rgba(240, 253, 244, 0.78);
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+/* ════════════════════════════════════════════
+   頁底版權標示（LegalFooter）
+   ════════════════════════════════════════════ */
+
+.legal-footer {
+  margin-top: 28px;
+}
+
+.footer-divider {
+  height: 0.5px;
+  margin-bottom: 20px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(201, 169, 110, 0.16) 50%,
+    transparent 100%
+  );
+}
+
+.footer-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: var(--muted);
+}
+
+/* ════════════════════════════════════════════
+   RWD（小螢幕適配）
+   ════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  :root { --page-px: 20px; }
+  .section-number { font-size: 50px; }
+}
