@@ -112,7 +112,6 @@
     backBtn.textContent = '←';
     backBtn.addEventListener('click', function (e) {
       e.preventDefault();
-      // 若有上頁則返回，否則嘗試關閉（適用 in-app WebView）
       if (window.history.length > 1) {
         window.history.back();
       } else {
@@ -120,10 +119,17 @@
       }
     });
 
+    const logoImg = make('img', 'logo-img');
+    logoImg.src = 'logo.png';
+    logoImg.alt = 'Luko';
+    logoImg.width = 20;
+    logoImg.height = 20;
+
     const logoText = make('span', 'logo-text');
     logoText.textContent = 'LUKO';
 
     headerInner.appendChild(backBtn);
+    headerInner.appendChild(logoImg);
     headerInner.appendChild(logoText);
     header.appendChild(headerInner);
 
