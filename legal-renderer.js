@@ -143,6 +143,12 @@
     /* ── 正文容器 ─────────────────────────────────────────── */
     const main = make('main', 'legal-main');
 
+    // Hero：Logo
+    const heroLogo = make('img', 'hero-logo');
+    heroLogo.src = 'logo.png';
+    heroLogo.alt = 'Luko';
+    main.appendChild(heroLogo);
+
     // Hero：大標題
     const heroTitle = make('h1', 'hero-title');
     heroTitle.textContent = doc.title;
